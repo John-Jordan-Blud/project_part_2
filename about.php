@@ -19,9 +19,11 @@
 </head>
 
 <body>
+    <header>
     <?php
-        include ('header.inc');
+        include ('nav.inc');
     ?>
+    </header>
     <main>
         <h1>About Us</h1>
         <section aria-labelledby="group-info-heading">
