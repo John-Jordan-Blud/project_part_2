@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 14, 2026 at 04:58 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost
+-- Generation Time: Oct 15, 2026 at 11:15 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -71,6 +71,29 @@ INSERT INTO `members` (`member_id`, `first_name`, `middle_name`, `last_name`) VA
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `quote`
+--
+
+CREATE TABLE `quote` (
+  `quote_id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `quote` text NOT NULL,
+  `translation` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `quote`
+--
+
+INSERT INTO `quote` (`quote_id`, `member_id`, `quote`, `translation`) VALUES
+(1, 1, '花开花落自有时，缘起缘灭无穷尽', 'Just as flowers bloom and wilt, there is no end to fates entwining and unwinding.'),
+(2, 2, '千里之行，始於足下', 'A journey of a thousand steps starts beneath one\'s feet.'),
+(3, 3, 'កុំចាក់អង្ករ យកអង្កាម', 'Don\'t pour out the rice and keep the husk.'),
+(4, 3, 'Wussten Sie, dass SkyNet ein echtes Unternehmen ist? Es ist ein chinesisches Überwachungsunternehmen', 'Did you know that SkyNet is an actual company? It is a Chinese surveillance company.');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -103,6 +126,13 @@ ALTER TABLE `members`
   ADD PRIMARY KEY (`member_id`);
 
 --
+-- Indexes for table `quote`
+--
+ALTER TABLE `quote`
+  ADD PRIMARY KEY (`quote_id`),
+  ADD KEY `member_id` (`member_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -117,9 +147,24 @@ ALTER TABLE `jobs`
 --
 ALTER TABLE `members`
   MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `quote`
+--
+ALTER TABLE `quote`
+  MODIFY `quote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `quote`
+--
+ALTER TABLE `quote`
+  ADD CONSTRAINT `quote_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `members` (`member_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-`
