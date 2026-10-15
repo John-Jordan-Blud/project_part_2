@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 15, 2026 at 11:15 PM
+-- Generation Time: Oct 15, 2026 at 11:38 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `coalminers_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fun_facts`
+--
+
+CREATE TABLE `fun_facts` (
+  `fact_id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `fact` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -114,6 +126,13 @@ INSERT INTO `users` (`Username`, `Password`) VALUES
 --
 
 --
+-- Indexes for table `fun_facts`
+--
+ALTER TABLE `fun_facts`
+  ADD PRIMARY KEY (`fact_id`),
+  ADD KEY `member_id` (`member_id`);
+
+--
 -- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -137,6 +156,12 @@ ALTER TABLE `quote`
 --
 
 --
+-- AUTO_INCREMENT for table `fun_facts`
+--
+ALTER TABLE `fun_facts`
+  MODIFY `fact_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -157,6 +182,12 @@ ALTER TABLE `quote`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `fun_facts`
+--
+ALTER TABLE `fun_facts`
+  ADD CONSTRAINT `fun_facts_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `members` (`member_id`);
 
 --
 -- Constraints for table `quote`
