@@ -131,13 +131,9 @@
         </div>
     </main>
     <footer>
-        <p>
-            In the spirit of reconciliation, we at the Coal Miners acknowledge the Aboriginal and Torres Strait Islander people as the traditional owners and custodians of Country. We pay our respects to their culture and elders, past, present and emerging.
-        </p>
-        <a href="https://chloejadeyoung07.atlassian.net/jira/software/projects/TCM/boards/2/backlog?epics=visible&amp;atlOrigin=eyJpIjoiNDM3ZDdhZmE2NjMyNGMxZThjNDA0ZGI0YjI0YjcxYzMiLCJwIjoiaiJ9"
-                title="JIRA Board">JIRA</a> |
-        <a href="https://github.com/John-Jordan-Blud/Assignment_1_Coal_Miners_JOB" title="GitHub Repositorys">GitHub</a> |
-        <a href="mailto:hello@teamcoalminers.com.au">hello@teamcoalminers.com.au</a>
+        <?php
+            include('footer.inc')
+        ?>
     </footer>   
 </body>
 </html>
