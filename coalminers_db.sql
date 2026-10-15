@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2026 at 12:02 AM
+-- Generation Time: Oct 16, 2026 at 01:05 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -33,6 +33,20 @@ CREATE TABLE `contributions` (
   `project_id` int(11) NOT NULL,
   `contribution` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contributions`
+--
+
+INSERT INTO `contributions` (`contribution_id`, `member_id`, `project_id`, `contribution`) VALUES
+(1, 1, 1, 'Initial creation of pages'),
+(2, 1, 1, 'Navigation & Footer'),
+(3, 1, 1, 'Job Listings page'),
+(4, 1, 1, 'Assignment Submission'),
+(5, 1, 2, 'Task 1: Reuse common UI with PHP includes'),
+(6, 1, 2, 'Task 2: Database Settings'),
+(7, 1, 2, 'Task 7: Create About tables and update'),
+(8, 1, 2, 'Presentation Management');
 
 -- --------------------------------------------------------
 
@@ -113,6 +127,14 @@ CREATE TABLE `projects` (
   `project_id` int(11) NOT NULL,
   `project_name` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `projects`
+--
+
+INSERT INTO `projects` (`project_id`, `project_name`) VALUES
+(1, 'Assignment 1'),
+(2, 'Assignment 2');
 
 -- --------------------------------------------------------
 
@@ -207,7 +229,7 @@ ALTER TABLE `quote`
 -- AUTO_INCREMENT for table `contributions`
 --
 ALTER TABLE `contributions`
-  MODIFY `contribution_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `contribution_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `fun_facts`
@@ -231,7 +253,7 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `quote`
