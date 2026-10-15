@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 15, 2026 at 11:38 PM
+-- Generation Time: Oct 15, 2026 at 11:51 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -32,6 +32,16 @@ CREATE TABLE `fun_facts` (
   `member_id` int(11) NOT NULL,
   `fact` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `fun_facts`
+--
+
+INSERT INTO `fun_facts` (`fact_id`, `member_id`, `fact`) VALUES
+(1, 1, 'My favourite TV show is Survivor.'),
+(2, 2, 'I enjoy playing chess.'),
+(3, 3, 'I can speak 5 languages.'),
+(4, 4, 'I like watching robot fighting, especially those leagues in China.');
 
 -- --------------------------------------------------------
 
@@ -159,7 +169,7 @@ ALTER TABLE `quote`
 -- AUTO_INCREMENT for table `fun_facts`
 --
 ALTER TABLE `fun_facts`
-  MODIFY `fact_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `fact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `jobs`
