@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2026 at 01:23 AM
+-- Generation Time: Oct 16, 2026 at 01:29 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -54,7 +54,11 @@ INSERT INTO `contributions` (`contribution_id`, `member_id`, `project_id`, `cont
 (13, 2, 2, 'Task 6: Authentication'),
 (14, 3, 1, 'About Us page'),
 (15, 3, 2, 'Task 3: Expression of Interest table'),
-(16, 3, 2, 'Task 4: Add validated records - process_eoi.php');
+(16, 3, 2, 'Task 4: Add validated records - process_eoi.php'),
+(17, 4, 1, 'Home page'),
+(18, 4, 1, 'Company Logo'),
+(19, 4, 1, 'Company Slogan'),
+(20, 4, 2, 'Task 6: HR Manager Queries - manage.php');
 
 -- --------------------------------------------------------
 
@@ -237,7 +241,7 @@ ALTER TABLE `quote`
 -- AUTO_INCREMENT for table `contributions`
 --
 ALTER TABLE `contributions`
-  MODIFY `contribution_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `contribution_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `fun_facts`
