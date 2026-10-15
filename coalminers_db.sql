@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2026 at 01:05 AM
+-- Generation Time: Oct 16, 2026 at 01:17 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -46,7 +46,12 @@ INSERT INTO `contributions` (`contribution_id`, `member_id`, `project_id`, `cont
 (5, 1, 2, 'Task 1: Reuse common UI with PHP includes'),
 (6, 1, 2, 'Task 2: Database Settings'),
 (7, 1, 2, 'Task 7: Create About tables and update'),
-(8, 1, 2, 'Presentation Management');
+(8, 1, 2, 'Presentation Management'),
+(9, 2, 1, 'Apply page and form'),
+(10, 2, 1, 'CSS Styling'),
+(11, 2, 2, 'Task 5: Jobs table and jobs.php'),
+(12, 2, 2, 'Task 6: Login Page for manage.php'),
+(13, 2, 2, 'Task 6: Authentication');
 
 -- --------------------------------------------------------
 
@@ -229,7 +234,7 @@ ALTER TABLE `quote`
 -- AUTO_INCREMENT for table `contributions`
 --
 ALTER TABLE `contributions`
-  MODIFY `contribution_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `contribution_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `fun_facts`
