@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 15, 2026 at 11:51 PM
+-- Generation Time: Oct 16, 2026 at 12:02 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `coalminers_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contributions`
+--
+
+CREATE TABLE `contributions` (
+  `contribution_id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL,
+  `contribution` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -93,6 +106,17 @@ INSERT INTO `members` (`member_id`, `first_name`, `middle_name`, `last_name`) VA
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `projects`
+--
+
+CREATE TABLE `projects` (
+  `project_id` int(11) NOT NULL,
+  `project_name` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `quote`
 --
 
@@ -136,6 +160,14 @@ INSERT INTO `users` (`Username`, `Password`) VALUES
 --
 
 --
+-- Indexes for table `contributions`
+--
+ALTER TABLE `contributions`
+  ADD PRIMARY KEY (`contribution_id`),
+  ADD KEY `member_id` (`member_id`),
+  ADD KEY `project_id` (`project_id`);
+
+--
 -- Indexes for table `fun_facts`
 --
 ALTER TABLE `fun_facts`
@@ -155,6 +187,12 @@ ALTER TABLE `members`
   ADD PRIMARY KEY (`member_id`);
 
 --
+-- Indexes for table `projects`
+--
+ALTER TABLE `projects`
+  ADD PRIMARY KEY (`project_id`);
+
+--
 -- Indexes for table `quote`
 --
 ALTER TABLE `quote`
@@ -164,6 +202,12 @@ ALTER TABLE `quote`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `contributions`
+--
+ALTER TABLE `contributions`
+  MODIFY `contribution_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `fun_facts`
@@ -184,6 +228,12 @@ ALTER TABLE `members`
   MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `projects`
+--
+ALTER TABLE `projects`
+  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `quote`
 --
 ALTER TABLE `quote`
@@ -192,6 +242,13 @@ ALTER TABLE `quote`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `contributions`
+--
+ALTER TABLE `contributions`
+  ADD CONSTRAINT `contributions_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `members` (`member_id`),
+  ADD CONSTRAINT `contributions_ibfk_2` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`);
 
 --
 -- Constraints for table `fun_facts`
