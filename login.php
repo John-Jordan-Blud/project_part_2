@@ -1,3 +1,37 @@
+<?php
+session_start();
+
+$error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username'] ?? '');
+    $password = trim($_POST['password'] ?? '');
+
+    if (empty($username) || empty($password)) {
+        $error = "Please enter both username and password.";
+    } else {
+        try {
+            $pdo = new PDO("mysql:host=localhost;dbname=coalminers_db", "root", "");
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE Username = ?");
+            $stmt->execute([$username]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($user && $password === $user['Password']) {
+                $_SESSION['Username'] = $user['Username'];
+                header('Location: manage.php');
+                exit();
+            } else {
+                $error = "Invalid username or password.";
+            }
+        } catch (PDOException $e) {
+            $error = "Database error: " . $e->getMessage();
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -27,40 +61,21 @@
             include('nav.inc')
         ?>
 
-        <h2></h2>
+        <h2>Login<h2>
     </header>
 
-    <main>
-        <form method = "post" action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>">
-            <!--PUT THE FORM TO GET THE INFO HERE-->
-        </form>
-
-        <?php
-            session_start();
-            require_once("settings.php");
-
-            $conn = mysqli_connect($host, $user, $pwd, $sql_db);
-
-            $username = trim($_POST['username']);
-            $password = trim($_POST['password']);
-
-            $query = "SELECT * FROM users WHERE Username = '$username' AND Password = '$password'";
-            $result = mysqli_query($conn, $query);
-            $user = mysqli_fetch_assoc($result);
-
-            if ($user) 
-            {
-                $_SESSION['username'] = $user['username'];
-                header("Location: manage.php");
-                exit();
-            }
-            else 
-            {
-                echo "Invalid login. Enter The Valid Credentials";
-            }
-
-            // Change around with this as much as you want
-        ?>
+    <?php if (!empty($error)): ?>
+        <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
+    <?php endif; ?>
+    <form method="POST" action="login.php">
+        <label>Username:</label><br>
+        <input type="text" name="username" required><br><br>
+        
+        <label>Password:</label><br>
+        <input type="password" name="password" required><br><br>
+        
+        <button type="submit">Login</button>
+    </form>
     </main>
 
     <footer style = "clear: both">
