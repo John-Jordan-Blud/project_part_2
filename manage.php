@@ -32,7 +32,18 @@
 
     <main>
         <?php
-            s
+            session_start();
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
+            if ($username == 'admin' && $password == 'admin')
+            {
+                $_SESSION['user'] = $username;
+            }
+            else
+            {
+                echo "Invalid login. <a href = 'login.php'>Enter The Valid Credentials</a>";
+            }
         ?>
     </main>
 
