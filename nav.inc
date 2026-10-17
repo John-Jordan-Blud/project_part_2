@@ -5,5 +5,7 @@
         <a href="about.php" title="About Us | Team Coal Miners">About Us</a>
         <a href="jobs.php" title="Job Opportunities | Team Coal Miners">Job Opportunities</a>
         <a href="apply.php" title="Apply | Team Coal Miners">Apply</a>
+        <a href="login.php" title="Login | Team Coal Miners">Login</a>
+
     </div>
 </nav>
