@@ -31,10 +31,10 @@
     </header>
 
     <main>
-        <form method = "post" action = "action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">">
+        <form method = "post" action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>">
             <!--PUT THE FORM TO GET THE INFO HERE-->
         </form>
-        
+
         <?php
             session_start();
             require_once("settings.php");
@@ -56,7 +56,7 @@
             }
             else 
             {
-                echo "Invalid login. <a href = 'login.php'>Enter The Valid Credentials</a>";
+                echo "Invalid login. Enter The Valid Credentials";
             }
 
             // Change around with this as much as you want
