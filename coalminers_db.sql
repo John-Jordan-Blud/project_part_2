@@ -187,6 +187,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`Username`, `Password`) VALUES
+('sigma', 'Ph0nk Hub'),
 ('admin', 'admin');
 
 --
