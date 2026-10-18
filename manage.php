@@ -78,17 +78,43 @@ try {
         <?php
             require_once "settings.php";
 
-            $dbconn =  @mysqli_connect($host, $user, $pwd, $sql_db);
-            $sort = $_POST['sort_option'];
+            $dbconn = @mysqli_connect($host, $user, $pwd, $sql_db);
+
+            $sort = "";
+
             $query = "SELECT * FROM eoi";
 
-            switch ($sort)
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') 
             {
-                case "all" || "first_names" || "last_names" || "full_names" || "job_references":
-                    $query = "SELECT * FROM eoi";
+                $sort = $_POST['sort_option'];
+
+                // Used a switch so that the sort goes through every possible scenario
+                // And a break was needed to force a stop.
+                switch ($sort)
+                {
+                    case "all":
+                        $query = "SELECT * FROM eoi ORDER BY EOInumber";
+                        break;
+                    case "first_names":
+                        $query = "SELECT * FROM eoi ORDER BY first_name ASC";
+                        break;
+                    case "last_names":
+                        $query = "SELECT * FROM eoi ORDER BY last_name ASC";
+                        break;
+                    case "full_names":
+                        $query = "SELECT * FROM eoi ORDER BY first_name ASC, last_name ASC";
+                        break;
+                    case "job_references":
+                        $query = "SELECT * FROM eoi ORDER BY job_ref ASC";
+                        break;
+                    default:
+                        $query = "SELECT * FROM eoi ORDER BY EOInumber";
+                        break;
+                }
             }
 
             $result = mysqli_query($dbconn, $query);
+
             if ($result)
             {
                 echo "<table>";
@@ -133,10 +159,8 @@ try {
                     echo "</tr>";
                 }
                 echo "</tbody>";
-                echo"</table>";
+                echo "</table>";
             }
-
-            mysqli_close($dbconn);
         ?>
     </main>
 
