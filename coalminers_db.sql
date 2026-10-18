@@ -63,6 +63,39 @@ INSERT INTO `contributions` (`contribution_id`, `member_id`, `project_id`, `cont
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `eoi`
+--
+
+CREATE TABLE `eoi` (
+  `EOInumber` int(11) NOT NULL,
+  `job_ref` varchar(6) NOT NULL,
+  `first_name` varchar(20) NOT NULL,
+  `last_name` varchar(20) NOT NULL,
+  `dob` date NOT NULL,
+  `gender` varchar(20) NOT NULL,
+  `street_address` varchar(40) NOT NULL,
+  `suburb` varchar(40) NOT NULL,
+  `state` varchar(3) NOT NULL,
+  `postcode` char(4) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `phone` varchar(12) NOT NULL,
+  `skills` varchar(255) DEFAULT NULL,
+  `other_skills` text DEFAULT NULL,
+  `status` enum('New','Current','Final') NOT NULL DEFAULT 'New'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `eoi`
+--
+
+INSERT INTO `eoi` (`EOInumber`, `job_ref`, `first_name`, `last_name`, `dob`, `gender`, `street_address`, `suburb`, `state`, `postcode`, `email`, `phone`, `skills`, `other_skills`, `status`) VALUES
+(1, 'GRADEV', 'Alex', 'Nguyen', '2001-05-14', 'male', '12 Smith Street', 'Hawthorn', 'VIC', '3122', 'alex@example.com', '0412345678', 'Smart, Computing, Teamwork', 'Python and SQL', 'New'),
+(2, 'USEXDE', 'Priya', 'Sharma', '1995-09-02', 'female', '8 George Road', 'Parramatta', 'NSW', '2150', 'priya@example.com', '0498765432', 'Adaptable, Computing', 'Figma', 'Current'),
+(3, 'FUENLE', 'Sam', 'Taylor', '1988-01-23', 'other', '45 Queen Street', 'Brisbane', 'QLD', '4000', 'sam@example.com', '0400111222', 'Leadership, Driving', '', 'Final');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `fun_facts`
 --
 
@@ -96,15 +129,6 @@ CREATE TABLE `jobs` (
   `job_salary` int(7) NOT NULL,
   `job_requirements` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `jobs`
---
-
-INSERT INTO `jobs` (`job_id`, `job_reference_number`, `job_title`, `job_description`, `job_salary`, `job_requirements`) VALUES
-(1, 'FUENLE', 'Fundraising Engagement Lead', 'We\'re looking for an experienced and enthusiastic Fundraising Engagement Lead to bring our greater community together and support our fundraising efforts. Reporting to the Head of Fundraising and Partnerships, you will play an important role in growing our community engagement, co-ordinating fundraising events and building strong relationships with our volunteers, support groups, sponsors and other stakeholders.\n\nKey Responsibilities:\n- Leading, coordinating and mentoring volunteers at fundraising events\n- Identifying and developing revenue streams and sponsorship opportunities\n- Building rapport with our community, sponsors and stakeholders\n- Maintaining accurate activity records (petty cash, budgets, invoices, attendance)', 90000, 'Essential:\n1. 3 years of community engagement and event organisation experience\n2. Strong organisational, communication and interpersonal skills\n3. Demonstrated leadership and stakeholder engagement skills\n4. Ability to work collaboratively\n5. Current Victorian Driver\'s licence and vehicle\n6. Basic IT Skills - Microsoft Office/Google Suite\n\nPreferable:\n- Experience with non-profit organisations\n- Salesforce experience'),
-(2, 'USEXDE', 'User Experience Designer', 'We\'re looking for an experienced and insightful User Experience Designer to join our growing team. Reporting to the Head of Design, it\'s a great opportunity for a designer who is passionate about the intersection between human problems and technology and designing solutions that serve our community.\n\nKey Responsibilities:\n- Conduct user research, usability testing and experience analysis\n- Create UX artefacts such as user experience journeys, wireframes and prototypes\n- Collaborate with product owners and stakeholders to define features and flows', 90000, 'Essential:\n1. 3 years of proven UX experience + portfolio\n2. Strong expertise in creating wireframes, prototypes, user flows, and journey mapping\n3. Deep understanding of accessibility standards\n4. Ability to engage in cross-team collaborations\n5. Strong communication skills\n\nPreferable:\n- Experience working in the non-profit space\n- Genuine expertise in Figma'),
-(3, 'GRADEV', 'Graduate Developer', 'We\'re looking to cultivate new and burgeoning talent. Reporting to the Product Owner, this is a great opportunity for enthusiastic computer science graduates who love solving problems and are eager to learn.\n\nKey Responsibilities:\n- Help develop applications and digital services (front end and back end)\n- Collaborate with other teams to deliver solutions\n- Write clean, maintainable and well-documented code\n- Troubleshoot, debug and fix software bugs', 80000, 'Essential:\n1. Bachelor\'s Degree in Computer Science (or equivalent)\n2. Knowledge of programming languages - Javascript, Python, C++, HTML, CSS\n3. Strong understanding of programming principles and developmental tools\n4. Strong work ethic and positive attitude\n\nPreferable:\n- A portfolio showcasing work you\'re proud of\n- Relational database/SQL knowledge');
 
 -- --------------------------------------------------------
 
@@ -203,6 +227,12 @@ ALTER TABLE `contributions`
   ADD KEY `project_id` (`project_id`);
 
 --
+-- Indexes for table `eoi`
+--
+ALTER TABLE `eoi`
+  ADD PRIMARY KEY (`EOInumber`);
+
+--
 -- Indexes for table `fun_facts`
 --
 ALTER TABLE `fun_facts`
@@ -243,6 +273,12 @@ ALTER TABLE `quote`
 --
 ALTER TABLE `contributions`
   MODIFY `contribution_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `eoi`
+--
+ALTER TABLE `eoi`
+  MODIFY `EOInumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `fun_facts`
