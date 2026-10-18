@@ -110,6 +110,24 @@ try {
 
             $dbconn = @mysqli_connect($host, $user, $pwd, $sql_db);
             
+            // REALM OF DELETING EOIs
+            $deleted_eoi = $_POST['deleted_eoi'];
+
+            // A lot of the functions that I'm using, switchs and while loops
+            // are how I would do things in C#, so aside from the occassional google search,
+            // I didn't need to look up how to do them in PHP.
+            switch ($deleted_eoi)
+            {
+                case "none":
+                    break;
+                default:
+                    // Had to google how to delete EOIs as I wasn't sure how to do it,
+                    // Exact google search: delete all values that have a specific id
+                    $query = "DELETE FROM eoi WHERE job_ref = '$deleted_eoi'";
+                    $result = mysqli_query($dbconn, $query);
+                    break;
+            }
+            
             $query = "SELECT * FROM eoi";
 
             $result = mysqli_query($dbconn, $query);
