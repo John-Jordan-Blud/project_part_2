@@ -8,6 +8,7 @@
     <meta name = "keywords" content = "Coal Miners">
     <title>Home | Team Coal Miners</title>
     <link rel = "stylesheet" href = "style/style.css">
+    <link rel = "stylesheet" href = "style/index_style.css">
     <link rel="icon" type="images/x-icon" href="images/Logo.png">
 
     <!--The figcation would always be on the right side of the image rather than under it-->

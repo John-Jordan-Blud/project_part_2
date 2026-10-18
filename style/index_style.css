@@ -1,0 +1,108 @@
+/*
+filename: index_style.css
+author: Team Coal Miners
+created: 5 Sept 2026
+last modified: 9 Sept 2026 - Minh
+description: The CSS Styling for index_html - home page
+*/
+
+#heading_background {
+    background-image: url('../images/Diamond.jpg');
+    /*I got mask gradient effect with Google AI while trying outsome methods to make the images fit better*/
+    /*The google search was image fade to transparent css which came up with both a Stack Overflow page and the AI answer/
+    /*After using it, I found it a suitable styling to make the website popout better and look more professional*/
+    /*Turns out the 
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    line was not needed at all, so much for trusting ai*/
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    width: 100%;
+    background-repeat: no-repeat;
+    border: 0.5px solid darkgrey;
+}
+
+/*Small changes like these are more for visual fixes for visual clarity*/
+#heading_background h1{
+    margin-left: 1em;
+}
+
+#heading_background h2{
+    margin-left: 1em;
+}
+
+/*The images and texts would invade each other, so this stopped that from happening*/
+section {
+    clear: both;
+    margin-bottom: 30em;
+}
+
+img {
+    float: right;
+    mask-image: linear-gradient(to left, black 50%, transparent 100%);
+    width: 50%;
+    height: 24em;
+}
+
+.aside_left {
+    float: left;
+    width: 50%;
+}
+
+/*If float elements were to be side by side, but won't for whatever reason*/
+/*Use width to make them via dividing it 50/50 or 60/40,..etc..*/
+/*Also I did not realise that the page would look from up to bottom in things like this*/
+#table {
+    margin-top: 60em;
+    margin-bottom: 3em;
+}
+
+#table h3 {
+    float: left;
+    width: 50%;
+}
+
+#table table {
+    float: right;
+    width: 50%;
+    text-align: center;
+    border: 1px solid black;
+}
+
+@media (max-width: 1350px) {
+    img {
+        float: none;
+        mask-image: linear-gradient(to top, black 50%, transparent 100%);
+        width: 100%;
+        height: auto;
+    }
+
+    .aside_left {
+        float: none;
+        width: 100%;
+    }
+
+    section {
+        margin-bottom: 5em;
+    }
+
+    #table {
+        margin-top: 5em;
+        margin-bottom: 3em;
+    }
+}
+
+/*The reason this is separate is because the tables would continue to be side by side for much longer*/
+@media (max-width: 950px) {
+    #table h3 {
+        float: none;
+        width: 100%;
+    }
+
+    #table table {
+        float: none;
+        width: 100%;
+    }
+}
+
+td, th {
+    border: 1px solid black;
+}
