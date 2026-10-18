@@ -2,7 +2,7 @@
 filename: style.css
 author: Team Coal Miners
 created: 31 Aug 2026
-last modified: 7 Sept 2026 - Chloe
+last modified: 18 OCT 2026 - Chloe
 description: Main CSS styling - global styles
 */
 
@@ -187,4 +187,106 @@ footer a {
 
 footer a:hover {
   color:#329b6b;
+}
+
+/* ABOUT - Team Photo */
+
+.team-photo {
+  margin: 1.5em 0;
+  text-align: center;
+}
+
+.team-photo img {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 4px 4px 12px #d8ddd5;
+}
+
+.team-photo figcaption {
+  margin-top: 0.5em;
+  font-style: italic;
+  color: #333333;
+}
+
+/* ABOUT - Individual Showcase */
+.team-showcase {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5em;
+  margin: 1.5em 0;
+}
+
+/* Collapse to a single column on small screens */
+@media (max-width: 700px) {
+  .team-showcase {
+    grid-template-columns: 1fr;
+  }
+}
+
+.member-slide {
+  background-color: #ffffff;
+  border: 1px solid #84bd87;
+  border-radius: 10px;
+  padding: 1.25em 1.5em;
+  box-shadow: 2px 2px 6px #d8ddd5;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ABOUT - Hover effects */
+.member-slide:hover {
+  transform: translateY(-4px);
+  box-shadow: 4px 6px 14px #b7c2b8;
+}
+
+.member-slide h3 {
+  font-size: 1.3em;
+  margin-top: 0;
+  color: #0d5836;
+}
+
+.member-slide blockquote {
+  margin-left: 0;
+  padding-left: 0.75em;
+  border-left: 3px solid #329b6b;
+  color: #333333;
+}
+
+.member-slide dl {
+  margin-top: 1em;
+}
+
+.member-slide dt {
+  font-weight: bold;
+  color: #7a4096;
+}
+
+.member-slide dd {
+  margin-left: 0;
+}
+
+/* ABOUT - Fun Facts*/
+.team-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+}
+
+.team-table caption {
+  font-weight: bold;
+  color: #0d5836;
+  margin-bottom: 0.5em;
+  text-align: left;
+}
+
+.team-table th,
+.team-table td {
+  border: 1px solid #84bd87;
+  padding: 0.75em 1em;
+  text-align: left;
+}
+
+.team-table thead th {
+  background-color: #0d5836;
+  color: #ffffff;
 }
