@@ -42,14 +42,13 @@
             <figure class="team-photo">
                 <img src="images/group-photo.jpg" alt="The Team Coal Miners group standing together"
                     style="border: 2px solid #444444;">
-                <figcaption>From left to right: Ryan, Minh, Chloe, Koktriv</figcaption>
+                <figcaption>L-R: Ryan, Minh, Chloe, Koktriv</figcaption>
             </figure>
         </section>
         <section aria-labelledby="members-heading">
             <h2 id="members-heading">Individual Members</h2>
             <div class="team-showcase">
-
-        <?php
+            <?php
             require_once('settings.php');
             $dbconn = @mysqli_connect($host,$user,$pwd,$sql_db);
             if ($dbconn) {
@@ -61,7 +60,7 @@
                         $member = $quote['member_id'];
                         $contributionQuery = "SELECT contributions.contribution, projects.project_name FROM contributions INNER JOIN projects ON contributions.project_id = projects.project_id WHERE member_id = $member;";
                         $contrib = mysqli_query($dbconn,$contributionQuery);
-                        echo "<section class=\"member-slide\">";
+                        echo "<section class=\"member-slide\" aria-labelledby=\"".strtolower($quote['first_name'])."-heading\">";
                         echo "<h3>".$quote['first_name']."</h3>";
                         echo "<blockquote>";
                         echo "<p class=\"quote-original\">".$quote['quote']."</p>";
@@ -94,123 +93,45 @@
             else {
                 echo "<p>Unable to connect to the db</p>";
             }
-        ?>
-            
-
-                <section class="member-slide" aria-labelledby="chloe-heading">
-                    <h3 id="chloe-heading">Chloe</h3>
-                    <blockquote lang="zh">
-                        <p class="quote-original">花开花落自有时，缘起缘灭无穷尽</p>
-                        <p>English translation: "Just as flowers bloom and wilt, there is no end to fates entwining and
-                            unwinding."</p>
-                    </blockquote>
-                    <dl>
-                        <dt>Contributions</dt>
-                        <dd>
-                            <ul>
-                                <li>Create HTML pages with boilerplate code, navigation and footer</li>
-                                <li>Research and create 3 job listings</li>
-                                <li>Team member profile</li>
-                                <li>Submission</li>
-                            </ul>
-                        </dd>
-                    </dl>
-                </section>
-
-                <section class="member-slide" aria-labelledby="ryan-heading">
-                    <h3 id="ryan-heading">Ryan <span class="student-id"><!-- TODO: student ID --></span></h3>
-                    <blockquote lang="zh">
-                        <p class="quote-original">"千里之行，始於足下"</p>
-                        <p>English translation: "A journey of a thousand steps starts beneath one's feet." <cite>&mdash;
-                                Lao Tzu</cite></p>
-                    </blockquote>
-                    <dl>
-                        <dt>Contributions</dt>
-                        <dd>
-                            <ul>
-                                <li>Team member profile</li>
-                                <li>CSS</li>
-                            </ul>
-                        </dd>
-                    </dl>
-                </section>
-
-                <section class="member-slide" aria-labelledby="minh-heading">
-                    <h3 id="minh-heading">Minh</h3>
-                    <blockquote lang="de">
-                        <p class="quote-original">Wussten Sie, dass SkyNet ein echtes Unternehmen ist? Es ist ein
-                            chinesisches &Uuml;berwachungsunternehmen.</p>
-                        <p>English translation: "Did you know that SkyNet is an actual company? It is a Chinese
-                            surveillance company."</p>
-                    </blockquote>
-                    <dl>
-                        <dt>Contributions</dt>
-                        <dd>
-                            <ul>
-                                <li>Team member profile</li>
-                                <li>Team member logo</li>
-                                <li>Company slogan and description</li>
-                            </ul>
-                        </dd>
-                    </dl>
-                </section>
-
-                <section class="member-slide" aria-labelledby="koktriv-heading">
-                    <h3 id="koktriv-heading">Koktriv</h3>
-                    <blockquote lang="km">
-                        <p class="quote-original">កុំចាក់អង្ករ យកអង្កាម</p>
-                        <p>English translation: "Don't pour out the rice and keep the husk."</p>
-                    </blockquote>
-                    <dl>
-                        <dt>Contributions</dt>
-                        <dd>
-                            <ul>
-                                <li>Team member profile</li>
-                                <li>Group photo</li>
-                                <li>About.html</li>
-                            </ul>
-                        </dd>
-                    </dl>
-                </section>
-
+            ?>
             </div>
             <section>
-                <h3 id="funfacts-heading">Fun Facts</h3>
-                    <caption>A few things you might not know about us!</caption>
-                <?php
-                    require_once('settings.php');
-                    $dbconn = @mysqli_connect($host,$user,$pwd,$sql_db);
-                    if ($dbconn) {
-                        $query = "SELECT members.first_name, fun_facts.fact FROM members LEFT JOIN fun_facts ON members.member_id = fun_facts.member_id;";
-                                $result = mysqli_query($dbconn,$query);
-                                if($result){
-                                    echo '<table class="team-table">';
-                                    echo "<thead>";
+            <h3 id="funfacts-heading">Fun Facts</h3>
+                <caption>A few things you might not know about us!</caption>
+            <?php
+                require_once('settings.php');
+                $dbconn = @mysqli_connect($host,$user,$pwd,$sql_db);
+                if ($dbconn) {
+                    $query = "SELECT members.first_name, fun_facts.fact FROM members LEFT JOIN fun_facts ON members.member_id = fun_facts.member_id;";
+                            $result = mysqli_query($dbconn,$query);
+                            if($result){
+                                echo '<table class="team-table">';
+                                echo "<thead>";
+                                echo "<tr>";
+                                echo '<th scope="col">Member</th>';
+                                echo '<th scope="col">Fact</th>';
+                                echo "</tr>";
+                                echo "</thead>";
+                                echo "<tbody>";
+                                while ($row = mysqli_fetch_assoc($result)) {
                                     echo "<tr>";
-                                    echo '<th scope="col">Member</th>';
-                                    echo '<th scope="col">Fact</th>';
+                                    echo "<td>" . $row['first_name'] . "</td>";
+                                    echo "<td>" . $row['fact'] . "</td>";
                                     echo "</tr>";
-                                    echo "</thead>";
-                                    echo "<tbody>";
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<tr>";
-                                        echo "<td>" . $row['first_name'] . "</td>";
-                                        echo "<td>" . $row['fact'] . "</td>";
-                                        echo "</tr>";
-                                    }
-                                    echo "</tbody>";
-                                    echo "</table>";
                                 }
-                                else {
-                                    echo "<p>No fun facts. We're no fun.</p>";
-                                }
-                                mysqli_close($dbconn);
+                                echo "</tbody>";
+                                echo "</table>";
                             }
                             else {
-                                echo "<p>Unable to connect to the db</p>";
-                  }
-                ?>
-            </section>
+                                echo "<p>No fun facts. We're no fun.</p>";
+                            }
+                            mysqli_close($dbconn);
+                        }
+                        else {
+                            echo "<p>Unable to connect to the db</p>";
+                }
+            ?>
+        </section>
         </section>
     </main>
     <footer>
