@@ -55,30 +55,34 @@
             if ($dbconn) {
                 $quoteQuery = "SELECT members.member_id, members.first_name, quote.quote, quote.translation FROM members INNER JOIN quote ON members.member_id = quote.member_id;";
                 $result = mysqli_query($dbconn,$quoteQuery);
+                // List quotes
                 if($result){
                     while ($quote = mysqli_fetch_assoc($result)) {
+                        $member = $quote['member_id'];
+                        $contributionQuery = "SELECT contributions.contribution, projects.project_name FROM contributions INNER JOIN projects ON contributions.project_id = projects.project_id WHERE member_id = $member;";
+                        $contrib = mysqli_query($dbconn,$contributionQuery);
                         echo "<section class=\"member-slide\">";
                         echo "<h3>".$quote['first_name']."</h3>";
                         echo "<blockquote>";
                         echo "<p class=\"quote-original\">".$quote['quote']."</p>";
                         echo "<p>".$quote['translation']."</p>";
                         echo "</blockquote>";
-                        if($contribution) {
+                        // List member contributions
+                        if($contrib){
                             echo "<dl>";
                             echo "<dt>Contributions</dt>";
                             echo "<dd>";
                             echo "<ul>";
-                            while ($line = mysqli_fetch_assoc($contribution)) {
-                                echo "<li>".$line['contribution']."</li>";
+                            while ($contribution = mysqli_fetch_assoc($contrib)) {
+                                echo "<li>[".$contribution['project_name']."] ".$contribution['contribution']."</li>";
                             }
                             echo "</ul>";
                             echo "</dd>";
                             echo "</dl>";
                         }
                         else {
-                            echo "<p>No contributions</p>";
+                            echo "No contributions";
                         }
-                        
                         echo "</section>";
                     }
                 }
