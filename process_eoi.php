@@ -2,6 +2,9 @@
 
 <?php
 
+<?php
+
+
 // Stop people opening this page directly without submitting the form
 if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["JobRefNumber"])) {
     header("Location: apply.php");
@@ -169,37 +172,24 @@ if (count($errors) == 0) {
         )";
         mysqli_query($dbconn, $create_table);
 
-        // Make sure the job reference is a real job
+        // Insert the application
         $job_ref = strtoupper($job_ref);
-        $stmt = mysqli_prepare($dbconn, "SELECT job_id FROM jobs WHERE job_reference_number = ?");
-        mysqli_stmt_bind_param($stmt, "s", $job_ref);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_store_result($stmt);
+        $skills_list = implode(", ", $skills);
 
-        if (mysqli_stmt_num_rows($stmt) == 0) {
-            $errors[] = "There is no job with the reference number $job_ref.";
+        $sql = "INSERT INTO eoi (job_ref, first_name, last_name, dob, gender, street_address,
+                                 suburb, state, postcode, email, phone, skills, other_skills)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($dbconn, $sql);
+        mysqli_stmt_bind_param($stmt, "sssssssssssss",
+            $job_ref, $first_name, $last_name, $dob, $gender, $street,
+            $suburb, $state, $postcode, $email, $phone, $skills_list, $other_skills);
+
+        if (mysqli_stmt_execute($stmt)) {
+            $eoi_number = mysqli_insert_id($dbconn);
+        } else {
+            $db_error = true;
         }
         mysqli_stmt_close($stmt);
-
-        // Insert the application
-        if (count($errors) == 0) {
-            $skills_list = implode(", ", $skills);
-
-            $sql = "INSERT INTO eoi (job_ref, first_name, last_name, dob, gender, street_address,
-                                     suburb, state, postcode, email, phone, skills, other_skills)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $stmt = mysqli_prepare($dbconn, $sql);
-            mysqli_stmt_bind_param($stmt, "sssssssssssss",
-                $job_ref, $first_name, $last_name, $dob, $gender, $street,
-                $suburb, $state, $postcode, $email, $phone, $skills_list, $other_skills);
-
-            if (mysqli_stmt_execute($stmt)) {
-                $eoi_number = mysqli_insert_id($dbconn);
-            } else {
-                $db_error = true;
-            }
-            mysqli_stmt_close($stmt);
-        }
 
         mysqli_close($dbconn);
     }
