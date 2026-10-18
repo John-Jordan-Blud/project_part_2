@@ -75,20 +75,46 @@ try {
                 <option value = "job_references">Job References</option>
             </select>
             <button type = "submit">Filter</button>
+
+            // Float used to make the delete EOI section appear on the right.
+            <div style = "float: right">
+                <label for = "deleted_eoi">Delete EOIs</label>
+                <select name = "deleted_eoi" id = "deleted_eoi" required>
+                    <option value = "none">None</option>
+                    <?php
+                        // Although this is harder to do than doing the above select form
+                        // this is more scalable incase the number of EOIs increases.
+                        require_once "settings.php";
+
+                        $dbconn = @mysqli_connect($host, $user, $pwd, $sql_db);
+
+                        $query = "SELECT job_ref FROM eoi";
+                        $result = mysqli_query($dbconn, $query);
+
+                        // I was not familiar with how this while loop worked,
+                        // Googling "mysqli_fetch_assoc" exactly gave me better,
+                        // although not complete understanding of it.
+                        while ($row = mysqli_fetch_assoc($result)) 
+                        {
+                            echo "<option value = '" . $row['job_ref'] . "'>" . $row['job_ref'] . "</option>";
+                        }
+                    ?>
+                </select>
+                <button type = "submit">Delete</button>
+            </div>
+            
         </form>
 
         <?php
             require_once "settings.php";
 
             $dbconn = @mysqli_connect($host, $user, $pwd, $sql_db);
-
-            $sort = "";
-
+            
             $query = "SELECT * FROM eoi";
 
             $result = mysqli_query($dbconn, $query);
 
-            //REALM OF STATUS UPDATE
+            // REALM OF STATUS UPDATE
             $status = [];
 
             $index = 1;
@@ -102,14 +128,19 @@ try {
             $index = 0;
             $dbindex = 1;
 
+            // Didn't know that it would be count() instead of
+            // array.length or array.size
             while ($index < count($status) && $status[$index] != null)
             {
+                // Had to google how to Update, the slides on canvas wasn't very clear on how to do it
+                // Exact google search: update query sql
                 $query = "UPDATE eoi SET eoi_status = '$status[$index]' WHERE EOInumber = '$dbindex'";
                 $result = mysqli_query($dbconn, $query);
                 $index++;
                 $dbindex++;
             }
 
+            // REALM OF SORTING
             $sort = $_POST['sort_option'];
 
             // Used a switch so that the sort goes through every possible scenario
@@ -141,9 +172,10 @@ try {
                     echo $sort;
                     break;
             }
-            
+
             $result = mysqli_query($dbconn, $query);
-            
+
+            // REALM OF TABLE MAKING
             if ($result)
             {
                 echo "<form method = 'post' action = 'manage.php'>";
@@ -187,7 +219,7 @@ try {
                     echo "<td>" . $row['skills'] . "</td>";
                     echo "<td>" . $row['other_skills'] . "</td>";
                     echo "<td>";
-                    
+
                     echo "<select name = 'status_" . $row['EOInumber'] . "' required>";
 
                     switch ($row['eoi_status'])
@@ -208,7 +240,7 @@ try {
                             echo "<option value = 'Current'>Current</option>";
                             break;
                     }
-                    
+
                     echo "</td>";
                     echo "</tr>";
                 }
