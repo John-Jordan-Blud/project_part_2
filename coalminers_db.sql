@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2026 at 01:29 AM
+-- Generation Time: Oct 18, 2026 at 11:45 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -193,7 +193,7 @@ INSERT INTO `quote` (`quote_id`, `member_id`, `quote`, `translation`) VALUES
 (1, 1, '花开花落自有时，缘起缘灭无穷尽', 'Just as flowers bloom and wilt, there is no end to fates entwining and unwinding.'),
 (2, 2, '千里之行，始於足下', 'A journey of a thousand steps starts beneath one\'s feet.'),
 (3, 3, 'កុំចាក់អង្ករ យកអង្កាម', 'Don\'t pour out the rice and keep the husk.'),
-(4, 3, 'Wussten Sie, dass SkyNet ein echtes Unternehmen ist? Es ist ein chinesisches Überwachungsunternehmen', 'Did you know that SkyNet is an actual company? It is a Chinese surveillance company.');
+(4, 4, 'Wussten Sie, dass SkyNet ein echtes Unternehmen ist? Es ist ein chinesisches Überwachungsunternehmen', 'Did you know that SkyNet is an actual company? It is a Chinese surveillance company.');
 
 -- --------------------------------------------------------
 

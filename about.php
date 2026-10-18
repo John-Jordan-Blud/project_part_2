@@ -53,28 +53,43 @@
             require_once('settings.php');
             $dbconn = @mysqli_connect($host,$user,$pwd,$sql_db);
             if ($dbconn) {
-                $query = "SELECT members.first_name, quote.quote, quote.translation FROM members INNER JOIN quote ON members.member_id = quote.member_id;";
-                        $result = mysqli_query($dbconn,$query);
-                        if($result){
-                            while ($quote = mysqli_fetch_assoc($result)) {
-                                echo "<section class=\"member-slide\">";
-                                echo "<h3>".$quote['first_name']."</h3>";
-                                echo "<blockquote>";
-                                echo "<p class=\"quote-original\">".$quote['quote']."</p>";
-                                echo "<p>".$quote['translation']."</p>";
-                                echo "</blockquote>";
-                                echo "</section>";
+                $quoteQuery = "SELECT members.member_id, members.first_name, quote.quote, quote.translation FROM members INNER JOIN quote ON members.member_id = quote.member_id;";
+                $result = mysqli_query($dbconn,$quoteQuery);
+                if($result){
+                    while ($quote = mysqli_fetch_assoc($result)) {
+                        echo "<section class=\"member-slide\">";
+                        echo "<h3>".$quote['first_name']."</h3>";
+                        echo "<blockquote>";
+                        echo "<p class=\"quote-original\">".$quote['quote']."</p>";
+                        echo "<p>".$quote['translation']."</p>";
+                        echo "</blockquote>";
+                        if($contribution) {
+                            echo "<dl>";
+                            echo "<dt>Contributions</dt>";
+                            echo "<dd>";
+                            echo "<ul>";
+                            while ($line = mysqli_fetch_assoc($contribution)) {
+                                echo "<li>".$line['contribution']."</li>";
                             }
-
+                            echo "</ul>";
+                            echo "</dd>";
+                            echo "</dl>";
                         }
                         else {
-                            echo "<p>No working. You suck.</p>";
+                            echo "<p>No contributions</p>";
                         }
-                        mysqli_close($dbconn);
+                        
+                        echo "</section>";
                     }
+                }
+                else {
+                    echo "<p>No working. You suck.</p>";
+                }
+                mysqli_close($dbconn);
+            }
             else {
                 echo "<p>Unable to connect to the db</p>";
-                }
+            }
         ?>
             
 
