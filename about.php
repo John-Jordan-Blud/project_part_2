@@ -9,7 +9,6 @@
     <meta name="keywords" content="about us, team, recruitment, coal miners">
     <title>About Us | Team Coal Miners</title>
     <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/about.css">
     <link rel="icon" type="image/png" href="images/Logo.png">
     <style>
         .quote-original {
