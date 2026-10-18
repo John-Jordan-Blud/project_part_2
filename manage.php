@@ -86,6 +86,30 @@ try {
 
             $query = "SELECT * FROM eoi";
 
+            $result = mysqli_query($dbconn, $query);
+
+            //REALM OF STATUS UPDATE
+            $status = [];
+
+            $index = 1;
+
+            while ($index <= mysqli_num_rows($result))
+            {
+                $status[] = $_POST['status_'. $index];
+                $index++;
+            }
+
+            $index = 0;
+            $dbindex = 1;
+
+            while ($index < count($status) && $status[$index] != null)
+            {
+                $query = "UPDATE eoi SET eoi_status = '$status[$index]' WHERE EOInumber = '$dbindex'";
+                $result = mysqli_query($dbconn, $query);
+                $index++;
+                $dbindex++;
+            }
+
             $sort = $_POST['sort_option'];
 
             // Used a switch so that the sort goes through every possible scenario
@@ -163,24 +187,25 @@ try {
                     echo "<td>" . $row['skills'] . "</td>";
                     echo "<td>" . $row['other_skills'] . "</td>";
                     echo "<td>";
-                    echo "<select name = 'status' id = status' required>";
+                    
+                    echo "<select name = 'status_" . $row['EOInumber'] . "' required>";
 
-                    switch ($row['status'])
+                    switch ($row['eoi_status'])
                     {
                         case "New":
-                            echo "<option value = 'status'>" . $row['status'] . "</option>";
-                            echo "<option value = 'status'>Current</option>";
-                            echo "<option value = 'status'>Final</option>";
+                            echo "<option value = 'New'>" . $row['eoi_status'] . "</option>";
+                            echo "<option value = 'Current'>Current</option>";
+                            echo "<option value = 'Final'>Final</option>";
                             break;
                         case "Current":
-                            echo "<option value = 'status'>New</option>";
-                            echo "<option value = 'status'>" . $row['status'] . "</option>";
-                            echo "<option value = 'status'>Final</option>";
+                            echo "<option value = 'Current'>" . $row['eoi_status'] . "</option>";
+                            echo "<option value = 'New'>New</option>";
+                            echo "<option value = 'Final'>Final</option>";
                             break;
                         case "Final":
-                            echo "<option value = 'status'>New</option>";
-                            echo "<option value = 'status'>Current</option>";
-                            echo "<option value = 'status'>" . $row['status'] . "</option>";
+                            echo "<option value = 'Final'>" . $row['eoi_status'] . "</option>";
+                            echo "<option value = 'New'>New</option>";
+                            echo "<option value = 'Current'>Current</option>";
                             break;
                     }
                     

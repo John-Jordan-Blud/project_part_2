@@ -81,14 +81,14 @@ CREATE TABLE `eoi` (
   `phone` varchar(12) NOT NULL,
   `skills` varchar(255) DEFAULT NULL,
   `other_skills` text DEFAULT NULL,
-  `status` enum('New','Current','Final') NOT NULL DEFAULT 'New'
+  `eoi_status` enum('New','Current','Final') NOT NULL DEFAULT 'New'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `eoi`
 --
 
-INSERT INTO `eoi` (`EOInumber`, `job_ref`, `first_name`, `last_name`, `dob`, `gender`, `street_address`, `suburb`, `state`, `postcode`, `email`, `phone`, `skills`, `other_skills`, `status`) VALUES
+INSERT INTO `eoi` (`EOInumber`, `job_ref`, `first_name`, `last_name`, `dob`, `gender`, `street_address`, `suburb`, `state`, `postcode`, `email`, `phone`, `skills`, `other_skills`, `eoi_status`) VALUES
 (1, 'GRADEV', 'Alex', 'Nguyen', '2001-05-14', 'male', '12 Smith Street', 'Hawthorn', 'VIC', '3122', 'alex@example.com', '0412345678', 'Smart, Computing, Teamwork', 'Python and SQL', 'New'),
 (2, 'USEXDE', 'Priya', 'Sharma', '1995-09-02', 'female', '8 George Road', 'Parramatta', 'NSW', '2150', 'priya@example.com', '0498765432', 'Adaptable, Computing', 'Figma', 'Current'),
 (3, 'FUENLE', 'Sam', 'Taylor', '1988-01-23', 'other', '45 Queen Street', 'Brisbane', 'QLD', '4000', 'sam@example.com', '0400111222', 'Leadership, Driving', '', 'Final');
