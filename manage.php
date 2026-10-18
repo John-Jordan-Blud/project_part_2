@@ -73,7 +73,6 @@ try {
                 <option value = "last_names">Last names</option>
                 <option value = "full_names">Full names</option>
                 <option value = "job_references">Job References</option>
-                <option value = "status">Status</option>
             </select>
             <button type = "submit">Filter</button>
         </form>
@@ -87,42 +86,44 @@ try {
 
             $query = "SELECT * FROM eoi";
 
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+            $sort = $_POST['sort_option'];
+
+            // Used a switch so that the sort goes through every possible scenario
+            // And a break was needed to force a stop.
+            switch ($sort)
             {
-                $sort = $_POST['sort_option'];
-
-                // Used a switch so that the sort goes through every possible scenario
-                // And a break was needed to force a stop.
-                switch ($sort)
-                {
-                    case "all":
-                        $query = "SELECT * FROM eoi ORDER BY EOInumber";
-                        break;
-                    case "first_names":
-                        $query = "SELECT * FROM eoi ORDER BY first_name ASC";
-                        break;
-                    case "last_names":
-                        $query = "SELECT * FROM eoi ORDER BY last_name ASC";
-                        break;
-                    case "full_names":
-                        $query = "SELECT * FROM eoi ORDER BY first_name ASC, last_name ASC";
-                        break;
-                    case "job_references":
-                        $query = "SELECT * FROM eoi ORDER BY job_ref ASC";
-                        break;
-                    case "status":
-                        $query = "SELECT * FROM eoi ORDER BY status ASC";
-                        break;
-                    default:
-                        $query = "SELECT * FROM eoi ORDER BY EOInumber";
-                        break;
-                }
+                case "all":
+                    $query = "SELECT * FROM eoi ORDER BY EOInumber";
+                    echo $sort;
+                    break;
+                case "first_names":
+                    $query = "SELECT * FROM eoi ORDER BY first_name ASC";
+                    echo $sort;
+                    break;
+                case "last_names":
+                    $query = "SELECT * FROM eoi ORDER BY last_name ASC";
+                    echo $sort;
+                    break;
+                case "full_names":
+                    $query = "SELECT * FROM eoi ORDER BY first_name ASC, last_name ASC";
+                    echo $sort;
+                    break;
+                case "job_references":
+                    $query = "SELECT * FROM eoi ORDER BY job_ref ASC";
+                    echo $sort;
+                    break;
+                default:
+                    $query = "SELECT * FROM eoi ORDER BY EOInumber";
+                    echo $sort;
+                    break;
             }
-
+            
             $result = mysqli_query($dbconn, $query);
-
+            
             if ($result)
             {
+                echo "<form method = 'post' action = 'manage.php'>";
+                echo "</select>";
                 echo "<table>";
                 echo "<thead>";
                 echo "<tr>";
@@ -161,11 +162,35 @@ try {
                     echo "<td>" . $row['phone'] . "</td>";
                     echo "<td>" . $row['skills'] . "</td>";
                     echo "<td>" . $row['other_skills'] . "</td>";
-                    echo "<td>" . $row['status'] . "</td>";
+                    echo "<td>";
+                    echo "<select name = 'status' id = status' required>";
+
+                    switch ($row['status'])
+                    {
+                        case "New":
+                            echo "<option value = 'status'>" . $row['status'] . "</option>";
+                            echo "<option value = 'status'>Current</option>";
+                            echo "<option value = 'status'>Final</option>";
+                            break;
+                        case "Current":
+                            echo "<option value = 'status'>New</option>";
+                            echo "<option value = 'status'>" . $row['status'] . "</option>";
+                            echo "<option value = 'status'>Final</option>";
+                            break;
+                        case "Final":
+                            echo "<option value = 'status'>New</option>";
+                            echo "<option value = 'status'>Current</option>";
+                            echo "<option value = 'status'>" . $row['status'] . "</option>";
+                            break;
+                    }
+                    
+                    echo "</td>";
                     echo "</tr>";
                 }
                 echo "</tbody>";
                 echo "</table>";
+                echo "<button type = 'submit'>Update</button>";
+                echo "</form>";
             }
         ?>
     </main>
