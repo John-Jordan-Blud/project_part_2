@@ -61,6 +61,7 @@
                                 echo "<h3>".$quote['first_name']."</h3>";
                                 echo "<blockquote>";
                                 echo "<p class=\"quote-original\">".$quote['quote']."</p>";
+                                echo "<p>".$quote['translation']."</p>";
                                 echo "</blockquote>";
                                 echo "</section>";
                             }
