@@ -47,6 +47,11 @@
         </section>
         <section aria-labelledby="members-heading">
             <h2 id="members-heading">Individual Members</h2>
+            <?php
+                require_once('settings.php');
+                $dbconn = @mysqli_connect($host,$user,$pwd,$sql_db);
+            ?>
+
             <div class="team-showcase">
 
                 <section class="member-slide" aria-labelledby="chloe-heading">
