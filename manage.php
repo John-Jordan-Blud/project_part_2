@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <?php
 session_start();
 
@@ -29,7 +31,6 @@ try {
 }
 
 ?>
-<!DOCTYPE html>
 
 
 <html lang = "en">
@@ -60,11 +61,11 @@ try {
             include('nav.inc')
         ?>
 
-        <h2>Welcome <?php echo $_SESSION['username'] ?>,</h2>
+        <h2>Welcome <?php echo $_SESSION['Username'] ?>,</h2>
     </header>
 
     <main>
-        <form method = "post" action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>">
+        <form method = "post" action = "manage.php">
             <label for = "sort_option">Sort Options: </label>
             <select name = "sort_option" id = "sort_option" required>
                 <option value = "all">All</option>
@@ -72,7 +73,9 @@ try {
                 <option value = "last_names">Last names</option>
                 <option value = "full_names">Full names</option>
                 <option value = "job_references">Job References</option>
+                <option value = "status">Status</option>
             </select>
+            <button type = "submit">Filter</button>
         </form>
 
         <?php
@@ -106,6 +109,9 @@ try {
                         break;
                     case "job_references":
                         $query = "SELECT * FROM eoi ORDER BY job_ref ASC";
+                        break;
+                    case "status":
+                        $query = "SELECT * FROM eoi ORDER BY status ASC";
                         break;
                     default:
                         $query = "SELECT * FROM eoi ORDER BY EOInumber";
