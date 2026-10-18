@@ -47,12 +47,10 @@
         </section>
         <section aria-labelledby="members-heading">
             <h2 id="members-heading">Individual Members</h2>
-            <?php
-                require_once('settings.php');
-                $dbconn = @mysqli_connect($host,$user,$pwd,$sql_db);
-            ?>
-
             <div class="team-showcase">
+
+
+            
 
                 <section class="member-slide" aria-labelledby="chloe-heading">
                     <h3 id="chloe-heading">Chloe</h3>
@@ -133,33 +131,40 @@
             </div>
             <section>
                 <h3 id="funfacts-heading">Fun Facts</h3>
-                <table class="team-table">
                     <caption>A few things you might not know about us</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Fun Fact</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Chloe</td>
-                            <td>My favourite TV show is Survivor.</td>
-                        </tr>
-                        <tr>
-                            <td>Ryan</td>
-                            <td>I enjoy playing chess.</td>
-                        </tr>
-                        <tr>
-                            <td>Minh</td>
-                            <td>I like watching robot fighting, especially those leagues in China.</td>
-                        </tr>
-                        <tr>
-                            <td>Koktriv</td>
-                            <td>I can speak 5 languages.</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <?php
+                require_once('settings.php');
+                $dbconn = @mysqli_connect($host,$user,$pwd,$sql_db);
+                if ($dbconn) {
+                    $query = "SELECT members.first_name, fun_facts.fact FROM members LEFT JOIN fun_facts ON members.member_id = fun_facts.member_id;";
+                            $result = mysqli_query($dbconn,$query);
+                            if($result){
+                                echo '<table class="team-table">';
+                                echo "<thead>";
+                                echo "<tr>";
+                                echo '<th scope="col">Member</th>';
+                                echo '<th scope="col">Fact</th>';
+                                echo "</tr>";
+                                echo "</thead>";
+                                echo "<tbody>";
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<tr>";
+                                    echo "<td>" . $row['first_name'] . "</td>";
+                                    echo "<td>" . $row['fact'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</tbody>";
+                                echo "</table>";
+                            }
+                            else {
+                                echo "<p>No fun facts. We're no fun.</p>";
+                            }
+                            mysqli_close($dbconn);
+                        }
+                        else {
+                            echo "<p>Unable to connect to the db</p>";
+                }
+            ?>
             </section>
         </section>
     </main>
