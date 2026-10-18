@@ -8,7 +8,6 @@
     <meta name="keywords" content="">
     <title>Job Opportunities | Team Coal Miners</title>
     <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/jobs.css">
     <link rel="icon" type="images/x-icon" href="images/Logo.png">
     <style>
         .reference-number {

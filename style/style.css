@@ -299,3 +299,37 @@ footer a:hover {
 .team-table tbody tr:nth-child(even) {
   background-color: #f4f4f4;
 }
+
+
+
+/* For mobile (default setting), display aside and job listings in single column for readability 
+GenAI used: Google Gemini
+Prompt: single column flex container in mobile 2 40% 60% column on desktop
+*/
+#opportunities {
+    display: flex;
+    flex-direction: column;
+}
+
+aside {
+    margin-right: 2em;
+    padding: 1em;
+    height: 100%;
+}
+
+
+/* For desktop - display the aside at 25% width and job listings at 70% width */
+@media (min-width: 768px) {
+    #opportunities {
+        flex-direction: row;
+    }
+
+    aside {
+        flex: 0 0 25%;
+    }
+
+    #job-list {
+        flex: 0 0 70%;
+    }
+
+}
