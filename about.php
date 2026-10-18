@@ -49,7 +49,32 @@
             <h2 id="members-heading">Individual Members</h2>
             <div class="team-showcase">
 
+        <?php
+            require_once('settings.php');
+            $dbconn = @mysqli_connect($host,$user,$pwd,$sql_db);
+            if ($dbconn) {
+                $query = "SELECT members.first_name, quote.quote, quote.translation FROM members INNER JOIN quote ON members.member_id = quote.member_id;";
+                        $result = mysqli_query($dbconn,$query);
+                        if($result){
+                            while ($quote = mysqli_fetch_assoc($result)) {
+                                echo "<section class=\"member-slide\">";
+                                echo "<h3>".$quote['first_name']."</h3>";
+                                echo "<blockquote>";
+                                echo "<p class=\"quote-original\">".$quote['quote']."</p>";
+                                echo "</blockquote>";
+                                echo "</section>";
+                            }
 
+                        }
+                        else {
+                            echo "<p>No working. You suck.</p>";
+                        }
+                        mysqli_close($dbconn);
+                    }
+            else {
+                echo "<p>Unable to connect to the db</p>";
+                }
+        ?>
             
 
                 <section class="member-slide" aria-labelledby="chloe-heading">
@@ -131,40 +156,40 @@
             </div>
             <section>
                 <h3 id="funfacts-heading">Fun Facts</h3>
-                    <caption>A few things you might not know about us</caption>
+                    <caption>A few things you might not know about us!</caption>
                 <?php
-                require_once('settings.php');
-                $dbconn = @mysqli_connect($host,$user,$pwd,$sql_db);
-                if ($dbconn) {
-                    $query = "SELECT members.first_name, fun_facts.fact FROM members LEFT JOIN fun_facts ON members.member_id = fun_facts.member_id;";
-                            $result = mysqli_query($dbconn,$query);
-                            if($result){
-                                echo '<table class="team-table">';
-                                echo "<thead>";
-                                echo "<tr>";
-                                echo '<th scope="col">Member</th>';
-                                echo '<th scope="col">Fact</th>';
-                                echo "</tr>";
-                                echo "</thead>";
-                                echo "<tbody>";
-                                while ($row = mysqli_fetch_assoc($result)) {
+                    require_once('settings.php');
+                    $dbconn = @mysqli_connect($host,$user,$pwd,$sql_db);
+                    if ($dbconn) {
+                        $query = "SELECT members.first_name, fun_facts.fact FROM members LEFT JOIN fun_facts ON members.member_id = fun_facts.member_id;";
+                                $result = mysqli_query($dbconn,$query);
+                                if($result){
+                                    echo '<table class="team-table">';
+                                    echo "<thead>";
                                     echo "<tr>";
-                                    echo "<td>" . $row['first_name'] . "</td>";
-                                    echo "<td>" . $row['fact'] . "</td>";
+                                    echo '<th scope="col">Member</th>';
+                                    echo '<th scope="col">Fact</th>';
                                     echo "</tr>";
+                                    echo "</thead>";
+                                    echo "<tbody>";
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<tr>";
+                                        echo "<td>" . $row['first_name'] . "</td>";
+                                        echo "<td>" . $row['fact'] . "</td>";
+                                        echo "</tr>";
+                                    }
+                                    echo "</tbody>";
+                                    echo "</table>";
                                 }
-                                echo "</tbody>";
-                                echo "</table>";
+                                else {
+                                    echo "<p>No fun facts. We're no fun.</p>";
+                                }
+                                mysqli_close($dbconn);
                             }
                             else {
-                                echo "<p>No fun facts. We're no fun.</p>";
-                            }
-                            mysqli_close($dbconn);
-                        }
-                        else {
-                            echo "<p>Unable to connect to the db</p>";
-                }
-            ?>
+                                echo "<p>Unable to connect to the db</p>";
+                  }
+                ?>
             </section>
         </section>
     </main>
