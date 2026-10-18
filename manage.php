@@ -13,7 +13,7 @@ try {
     $pdo = new PDO("mysql:host=localhost;dbname=coalminers_db", "root", "");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $pdo->prepare("SELECT Username, FROM users WHERE Username = ?");
+    $stmt = $pdo->prepare("SELECT Username FROM users WHERE Username = ?");
     $stmt->execute([$username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
