@@ -29,6 +29,9 @@ description: Main CSS styling - global styles
 body {
   margin: 0;
   padding: 0;
+  display:flex;
+  min-height: 100dvh;
+  flex-direction: column;
   background-color: #f9fded;
 }
 
@@ -177,6 +180,7 @@ footer {
   background-color: #d8ddd5;
   overflow: auto;
   text-align: center;
+  margin-top: auto;
 }
 
 footer a {
