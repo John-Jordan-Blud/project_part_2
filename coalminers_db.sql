@@ -125,10 +125,23 @@ CREATE TABLE `jobs` (
   `job_id` int(11) NOT NULL,
   `job_reference_number` varchar(7) NOT NULL,
   `job_title` varchar(100) NOT NULL,
-  `job_description` varchar(1000) NOT NULL,
-  `job_salary` int(7) NOT NULL,
-  `job_requirements` varchar(1000) NOT NULL
+  `job_location` varchar(100) NOT NULL,
+  `job_description` text NOT NULL,
+  `job_salary` varchar(50) NOT NULL,
+  `job_reporting_line` varchar(100) NOT NULL,
+  `job_responsibilities` text NOT NULL,
+  `job_essential_reqs` text NOT NULL,
+  `job_preferable_reqs` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `jobs`
+--
+
+INSERT INTO `jobs` (`job_id`, `job_reference_number`, `job_title`, `job_location`, `job_description`, `job_salary`, `job_reporting_line`, `job_responsibilities`, `job_essential_reqs`, `job_preferable_reqs`) VALUES
+(1, 'FUENLE', 'Fundraising Engagement Lead', 'Melbourne / Regional', 'We\'re looking for an experienced and enthusiastic Fundraising Engagement Lead to bring our greater community together and support our fundraising efforts. You will play an important role in growing our community engagement, co-ordinating fundraising events and building strong relationships with our volunteers, support groups, sponsors and other stakeholders.', '$90,000 - $100,000', 'Head of Fundraising and Partnerships', '- Leading, coordinating and mentoring volunteers at fundraising events to provide positive experiences for everyone involved\n- Identifying and developing revenue streams and sponsorship opportunities\n- Building rapport with our community, sponsors and stakeholders\n- Representing TCM through outside engagement events\n- Maintaining accurate activity records (eg: petty cash, budgets, invoices, attendance)', '1. 3 years of community engagement and event organisation experience\n2. Strong organisational, communication and interpersonal skills\n3. Demonstrated leadership and stakeholder engagement skills\n4. Ability to work collaboratively\n5. Current Victorian Driver\'s licence and willingness to use your own vehicle\n6. Basic IT Skills - Microsoft Office/Google Suite', '- Experience with non-profit organisations\n- Salesforce experience'),
+(2, 'USEXDE', 'User Experience Designer', 'Melbourne (Hybrid)', 'We\'re looking for an experienced and insightful User Experience Designer to join our growing team. It\'s a great opportunity for a designer who is passionate about the intersection between human problems and technology and designing solutions that serve our community.', '$90,000 - $110,000', 'Head of Design', '- Conduct user research, usability testing and experience analysis\n- Create UX artefacts such as user experience journeys, wireframes and prototypes\n- Collaborate with product owners and stakeholders to define features, flows to ensure smooth product delivery.', '1. 3 years of proven UX experience + portfolio\n2. Strong expertise in creating wireframes, prototypes, user flows, and journey mapping\n3. Deep understanding of accessibility standards, digital best practices\n4. Ability to engage in cross team collaborations\n5. Strong communication skills', '- Experience working with in the non-profit space or community support industry\n- Genuine expertise in Figma'),
+(3, 'GRADEV', 'Graduate Developer', 'Melbourne (HQ)', 'We\'re looking to cultivate new and burgeoning talent. This is a great opportunity for any enthusiastic computer science graduates who love solving problems and are eager to learn. You\'ll receive mentoring and get exposure to modern development practices while you grow your knowledge and skills.', '$80,000 - $90,000', 'Product Owner', '- Help develop applications and digital services - front end and back end\n- Collaborate with other teams to deliver solutions\n- Write clean, maintainable and well documented code\n- Troubleshoot, debug and fix software bugs', '1. Bachelor\'s Degree in Computer Science (or equivalent)\n2. Knowledge of programming languages and frameworks - Javascript, Python, C++, HTML, CSS\n3. Strong understanding of programming principles and developmental tools\n4. Strong work ethic and positive attitude', '- A portfolio showcasing work you\'re proud of\n- Relational database/SQL knowledge');
 
 -- --------------------------------------------------------
 
