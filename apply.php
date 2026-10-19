@@ -187,5 +187,3 @@
 </body>
 </html>
 
-</body>
-</html>
