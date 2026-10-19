@@ -40,7 +40,7 @@ try {
     <meta name = "description" content = "The home page of the Coal Miners Organisation">
     <meta name = "author" content = "Team Coal Miners">
     <meta name = "keywords" content = "Coal Miners">
-    <title>Home | Team Coal Miners</title>
+    <title>Manage | Team Coal Miners</title>
     <link rel = "stylesheet" href = "style/style.css">
     <link rel = "stylesheet" href = "style/index_style.css">
     <link rel="icon" type="images/x-icon" href="images/Logo.png">
@@ -216,13 +216,13 @@ try {
             {
                 echo "<form method = 'post' action = 'manage.php'>";
                 echo "</select>";
-                echo "<table>";
+                echo "<table class = 'eoi_table'>";
                 echo "<thead>";
                 echo "<tr>";
-                echo "<th>EOI ID</th>";
+                echo "<th id = 'eoi_id'>EOI ID</th>";
                 echo "<th>Job Reference</th>";
                 echo "<th>First name</th>";
-                echo "<th>Last name</th>";
+                echo "<th>Last name</th>";/*
                 echo "<th>Date of Birth</th>";
                 echo "<th>Gender</th>";
                 echo "<th>Street Address</th>";
@@ -232,7 +232,7 @@ try {
                 echo "<th>Email</th>";
                 echo "<th>Phone</th>";
                 echo "<th>Skills</th>";
-                echo "<th>Other Skills</th>";
+                echo "<th>Other Skills</th>";*/
                 echo "<th>Status</th>";
                 echo "</tr>";
                 echo "</thead>";
@@ -240,10 +240,10 @@ try {
                 while ($row = mysqli_fetch_assoc($result)) 
                 {
                     echo "<tr>";
-                    echo "<th>" . $row['EOInumber'] . "</th>";
+                    echo "<th id = 'eoi_id'>" . $row['EOInumber'] . "</th>";
                     echo "<td>" . $row['job_ref'] . "</td>";
                     echo "<td>" . $row['first_name'] . "</td>";
-                    echo "<td>" . $row['last_name'] . "</td>";
+                    echo "<td>" . $row['last_name'] . "</td>";/*
                     echo "<td>" . $row['dob'] . "</td>";
                     echo "<td>" . $row['gender'] . "</td>";
                     echo "<td>" . $row['street_address'] . "</td>";
@@ -253,7 +253,7 @@ try {
                     echo "<td>" . $row['email'] . "</td>";
                     echo "<td>" . $row['phone'] . "</td>";
                     echo "<td>" . $row['skills'] . "</td>";
-                    echo "<td>" . $row['other_skills'] . "</td>";
+                    echo "<td>" . $row['other_skills'] . "</td>";*/
                     echo "<td>";
 
                     echo "<select name = 'status_" . $row['EOInumber'] . "' required>";
