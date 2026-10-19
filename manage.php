@@ -125,6 +125,30 @@ try {
                     // Exact google search: delete all values that have a specific id
                     $query = "DELETE FROM eoi WHERE job_ref = '$deleted_eoi'";
                     $result = mysqli_query($dbconn, $query);
+
+                    // A modified version from the update status code.
+                    $query = "SELECT * FROM eoi";
+                    $result = mysqli_query($dbconn, $query);
+                    $not_deleted = [];
+
+                    $index = 0;
+
+                    while ($row = mysqli_fetch_assoc($result))
+                    {
+                        $not_deleted[] = $row['EOInumber'];
+                        $index++;
+                    }
+
+                    $index = 0;
+                    $dbindex = 1;
+
+                    while ($index < count($not_deleted) && $not_deleted[$index] != null)
+                    {
+                        $query = "UPDATE eoi SET EOInumber = '$dbindex' WHERE EOInumber = '$not_deleted[$index]'";
+                        $result = mysqli_query($dbconn, $query);
+                        $index++;
+                        $dbindex++;
+                    }
                     break;
             }
             
