@@ -167,27 +167,21 @@ try {
             {
                 case "all":
                     $query = "SELECT * FROM eoi ORDER BY EOInumber";
-                    echo $sort;
                     break;
                 case "first_names":
                     $query = "SELECT * FROM eoi ORDER BY first_name ASC";
-                    echo $sort;
                     break;
                 case "last_names":
                     $query = "SELECT * FROM eoi ORDER BY last_name ASC";
-                    echo $sort;
                     break;
                 case "full_names":
                     $query = "SELECT * FROM eoi ORDER BY first_name ASC, last_name ASC";
-                    echo $sort;
                     break;
                 case "job_references":
                     $query = "SELECT * FROM eoi ORDER BY job_ref ASC";
-                    echo $sort;
                     break;
                 default:
                     $query = "SELECT * FROM eoi ORDER BY EOInumber";
-                    echo $sort;
                     break;
             }
 
