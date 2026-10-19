@@ -76,7 +76,7 @@ try {
             </select>
             <button type = "submit">Filter</button>
 
-            // Float used to make the delete EOI section appear on the right.
+            <!--Float used to make the delete EOI section appear on the right.-->
             <div style = "float: right">
                 <label for = "deleted_eoi">Delete EOIs</label>
                 <select name = "deleted_eoi" id = "deleted_eoi" required>
@@ -270,9 +270,10 @@ try {
         ?>
     </main>
 
-    <?php
-        include('footer.inc')
-    ?>
-
+    <footer style = "clear: both">
+        <?php
+            include('footer.inc')
+        ?>
+    </footer>
 </body>
 </html>
