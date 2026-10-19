@@ -53,15 +53,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             grid-column: 2; 
             justify-self: center; width: 100%; 
             background-color: #F9FDED; 
-            border: 10px solid transparent;
+            border: none;
         }
         h2 {
             text-align: center;
         }
         div.container{
-            border: none;
             text-align: center;
-                }
+            border: none;
+        }
+        div.container > fieldset {
+        border: none; /* Removes the border completely */
+        }
+
     </style>
         
 </head>
