@@ -52,6 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             clear: both;
             float: right;
         }
+        fieldset{
+            display: block; 
+            grid-column: 2; 
+            justify-self: center; width: 100%; 
+            max-width: 350px;
+            padding: 20px; 
+            border: 4px solid darkgreen; 
+            background-color: #F9FDED; 
+            box-sizing: border-box; margin: 0;
+        }
+
     </style>
         
 </head>
@@ -61,22 +72,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             include('nav.inc')
         ?>
 
-        <h2>Login<h2>
+        <h2><h2>
     </header>
-
-    <?php if (!empty($error)): ?>
-        <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
-    <?php endif; ?>
-    <form method="POST" action="login.php">
-        <label>Username:</label><br>
-        <input type="text" name="username" required><br><br>
+    <h2>Login<h2>
+<div class="container">
+    <fieldset >
+        <?php if (!empty($error)): ?>
+            <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
+        <?php endif; ?>
+        <form method="POST" action="login.php">
+            <label>Username:</label><br>
+            <input type="text" name="username" required><br><br>
         
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
-        
-        <button type="submit">Login</button>
-    </form>
-    </main>
+            <label>Password:</label><br>
+            <input type="password" name="password" required><br><br>
+            
+            <button type="submit">Login</button>
+        </form>
+        </fieldset>
+    </div>
+</main>
 
     <?php
         include('footer.inc')
