@@ -270,10 +270,9 @@ try {
         ?>
     </main>
 
-    <footer style = "clear: both">
-        <?php
-            include('footer.inc')
-        ?>
-    </footer>
+    <?php
+        include('footer.inc')
+    ?>
+
 </body>
 </html>

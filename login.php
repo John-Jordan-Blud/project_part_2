@@ -78,10 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
     </main>
 
-    <footer style = "clear: both">
-        <?php
-            include('footer.inc')
-        ?>
-    </footer>
+    <?php
+        include('footer.inc')
+    ?>
 </body>
 </html>

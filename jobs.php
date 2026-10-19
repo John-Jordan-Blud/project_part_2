@@ -129,10 +129,9 @@
             </div>
         </div>
     </main>
-    <footer>
-        <?php
-            include('footer.inc')
-        ?>
-    </footer>   
+    
+    <?php
+        include('footer.inc')
+    ?> 
 </body>
 </html>

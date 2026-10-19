@@ -179,11 +179,11 @@
         </div>
     </main>
 
-    <footer style = "clear: both">
+
         <?php
             include('footer.inc')
         ?>
-    </footer>
+
 </body>
 </html>
 

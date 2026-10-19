@@ -252,10 +252,10 @@ if (count($errors) == 0) {
         <?php endif; ?>
     </main>
 
-    <footer style = "clear: both">
-        <?php
-            include('footer.inc')
-        ?>
-    </footer>
+
+    <?php
+        include('footer.inc')
+    ?>
+
 </body>
 </html>
