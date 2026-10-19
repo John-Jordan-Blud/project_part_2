@@ -96,8 +96,6 @@
                     Islander peoples.
                 </p>
             </div>
-            
-
             <figure>
                 <a href = "https://thetorch.org.au/news/following-the-lines-wurundjeri/?srsltid=AfmBOorO8Wb3bYPGkzF5tKKaJI7dUTl4AQa2p8DHXgVpS9uywsG2F6ov">
                     <img src = "images/WurundjeriArt.jpg"
