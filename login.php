@@ -48,21 +48,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!--The figcation would always be on the right side of the image rather than under it-->
         <!--/*This was fixed by using clear: both, which should also work on clear right, but remains untested*/-->
     <style>
-        figcaption {
-            clear: both;
-            float: right;
-        }
         fieldset{
             display: block; 
             grid-column: 2; 
             justify-self: center; width: 100%; 
-            max-width: 350px;
-            padding: 20px; 
-            border: 4px solid darkgreen; 
             background-color: #F9FDED; 
-            box-sizing: border-box; margin: 0;
+            border: 10px solid transparent;
         }
-
+        h2 {
+            text-align: center;
+        }
+        div.container{
+            border: none;
+                }
     </style>
         
 </head>
@@ -71,12 +69,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php
             include('nav.inc')
         ?>
-
-        <h2><h2>
+        <h2></h2>
     </header>
-    <h2>Login<h2>
+    <h2>Login</h2>
 <div class="container">
-    <fieldset >
+    <fieldset>
         <?php if (!empty($error)): ?>
             <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
         <?php endif; ?>
@@ -89,12 +86,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <button type="submit">Login</button>
         </form>
-        </fieldset>
-    </div>
-</main>
-
-    <?php
-        include('footer.inc')
-    ?>
+    </fieldset>
+</div>
+<?php
+    include('footer.inc')
+?>
 </body>
 </html>
