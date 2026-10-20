@@ -1,3 +1,31 @@
+<?php
+session_start();
+
+$search = trim($_GET['search'] ?? '');
+$jobs = [];
+$error = '';
+
+try {
+    $pdo = new PDO("mysql:host=localhost;dbname=coalminers_db", "root", "");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Search query filtering across titles, departments, references, and descriptions
+    if ($search !== '') {
+        $stmt = $pdo->prepare("SELECT * FROM jobs WHERE job_title LIKE ? OR job_reference_number LIKE ? OR job_description LIKE ? ORDER BY job_title ASC");
+        $searchTerm = "%" . $search . "%";
+        $stmt->execute([$searchTerm, $searchTerm, $searchTerm, $searchTerm]);
+    } else {
+        $stmt = $pdo->prepare("SELECT * FROM jobs ORDER BY job_title ASC");
+        $stmt->execute();
+    }
+
+    $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    $error = "Database error: " . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
