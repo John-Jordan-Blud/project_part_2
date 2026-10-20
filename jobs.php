@@ -62,7 +62,7 @@ try {
                 <p>We are committed in our promise in creating an inclusive and diverse workplace so we can provide the best support to the communities we serve, including Aboriginal and Torres Strait Islander communities. We encourage and welcome applications from people of all backgrounds, cultures, abilities, genders and identities. </p>
             </aside>
         <div class="search-container" style="margin-bottom: 25px;">
-            <form method="GET" action="" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+            <form method="GET" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
             <input type="text" name="search" placeholder="Search by title, location, ref..." value="<?php echo htmlspecialchars($search); ?>" style="padding: 8px; width: 300px; max-width: 100%;">
             <button type="submit" style="padding: 8px 15px;">Search</button>
             <?php if ($search !== ''): ?>
