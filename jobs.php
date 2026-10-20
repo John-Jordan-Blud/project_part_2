@@ -40,6 +40,13 @@ try {
             font-size: 1.1em;
             color: #22592D;
         }
+        h4{
+            color: #0d5836; 
+            margin-top: 15px;
+        }
+        #job-list pre {
+            style="font-family: inherit; white-space: pre-wrap; margin: 0;"
+        }
     </style>
 </head>
 <body>
@@ -61,7 +68,7 @@ try {
                 <p>We're always looking for passionate and talented individuals to join our growing organisation.</p>
                 <p>We are committed in our promise in creating an inclusive and diverse workplace so we can provide the best support to the communities we serve, including Aboriginal and Torres Strait Islander communities. We encourage and welcome applications from people of all backgrounds, cultures, abilities, genders and identities. </p>
             </aside>
-        <div class="search-container" style="margin-bottom: 25px;">
+            <div class="search-container" style="margin-bottom: 25px;">
             <form method="GET" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
             <input type="text" name="search" placeholder="Search by title, location, ref..." value="<?php echo htmlspecialchars($search); ?>" style="padding: 8px; width: 300px; max-width: 100%;">
             <button type="submit" style="padding: 8px 15px;">Search</button>
@@ -75,6 +82,8 @@ try {
 
         <!-- Dynamic Job Listings Container -->
         <div id="job-list">
+            <h2></h2>
+            <h3></h3>
             <?php if (count($jobs) > 0): ?>
                 <?php foreach ($jobs as $job): ?>
                     <details class="job-item" style="margin-bottom: 20px; border: 1px solid #84bd87; padding: 20px; border-radius: 8px; background: #fff;">
@@ -90,14 +99,14 @@ try {
                             
                             <p style="margin-top: 10px;"><?php echo htmlspecialchars($job['job_description']); ?></p>
                             
-                            <h4 style="color: #0d5836; margin-top: 15px;">Key Responsibilities</h4>
-                            <pre style="font-family: inherit; white-space: pre-wrap; margin: 0;"><?php echo htmlspecialchars($job['job_responsibilities']); ?></pre>
+                            <h4>Key Responsibilities</h4>
+                            <pre><?php echo htmlspecialchars($job['job_responsibilities']); ?></pre>
                             
-                            <h4 style="color: #0d5836; margin-top: 15px;">Essential Requirements</h4>
-                            <pre style="font-family: inherit; white-space: pre-wrap; margin: 0;"><?php echo htmlspecialchars($job['job_essential_reqs']); ?></pre>
+                            <h4>Essential Requirements</h4>
+                            <pre><?php echo htmlspecialchars($job['job_essential_reqs']); ?></pre>
                             
-                            <h4 style="color: #0d5836; margin-top: 15px;">Preferable Requirements</h4>
-                            <pre style="font-family: inherit; white-space: pre-wrap; margin: 0;"><?php echo htmlspecialchars($job['job_preferable_reqs']); ?></pre>
+                            <h4>Preferable Requirements</h4>
+                            <pre><?php echo htmlspecialchars($job['job_preferable_reqs']); ?></pre>
                             
                             <div style="margin-top: 20px;">
                                 <a href="apply.php?job_ref=<?php echo urlencode($job['job_reference_number']); ?>" style="display: inline-block; padding: 10px 16px; background-color: #0d5836; color: #fff; text-decoration: none; border-radius: 4px; font-weight: bold;">Apply Here (Ref: <?php echo htmlspecialchars($job['job_reference_number']); ?>)</a>
@@ -111,9 +120,7 @@ try {
         </div>
     </main>
 
-    <footer>
         <?php include('footer.inc'); ?>
-    </footer>
  
 </body>
 </html>
