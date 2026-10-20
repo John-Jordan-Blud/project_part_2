@@ -59,7 +59,13 @@ try {
                 <p>We're always looking for passionate and talented individuals to join our growing organisation.</p>
                 <p>We are committed in our promise in creating an inclusive and diverse workplace so we can provide the best support to the communities we serve, including Aboriginal and Torres Strait Islander communities. We encourage and welcome applications from people of all backgrounds, cultures, abilities, genders and identities. </p>
             </aside>
-            
+        <form method="GET" action="" style="margin: 2em 0;">
+            <input type="text" name="search" placeholder="Search by title, location, ref..." value="<?php echo htmlspecialchars($search); ?>" style="padding: 8px; width: 300px; max-width: 100%;">
+            <button type="submit" style="padding: 8px 15px;">Search</button>
+            <?php if ($search !== ''): ?>
+                <a href="jobs.php" style="margin-left: 10px; text-decoration: none;">Reset</a>
+            <?php endif; ?>
+        </form>
 
         </div>
     </main>     
