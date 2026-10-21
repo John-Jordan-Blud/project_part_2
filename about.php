@@ -85,7 +85,7 @@
                     }
                 }
                 else {
-                    echo "<p>No working. You suck.</p>";
+                    echo "<p>No quote to show.</p>";
                 }
                 mysqli_close($dbconn);
             }
