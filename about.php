@@ -98,7 +98,6 @@
             <h3 id="funfacts-heading">Fun Facts</h3>
                 <caption>A few things you might not know about us!</caption>
             <?php
-                require_once('settings.php');
                 $dbconn = @mysqli_connect($host,$user,$pwd,$sql_db);
                 if ($dbconn) {
                     $query = "SELECT members.first_name, fun_facts.fact FROM members LEFT JOIN fun_facts ON members.member_id = fun_facts.member_id;";
