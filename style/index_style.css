@@ -64,7 +64,16 @@ img {
     float: right;
     width: 50%;
     text-align: center;
-    border: 1px solid black;
+
+    tbody th, tbody td {
+        border: 1px solid #84bd87;
+        padding: 0.2em;
+        text-align: center;
+    }
+
+    thead th, thead tr th, tfoot tr th, tfoot tr td {
+        padding: 0.2em;
+    }
 }
 
 @media (max-width: 1350px) {
@@ -103,7 +112,7 @@ img {
     }
 }
 
-.eoi_table {
+table {
     width: 100%;
     border-collapse: collapse;
     margin: 1.5em 0;
@@ -118,7 +127,7 @@ img {
         padding: 0;
     }
 
-    thead th {
+    thead th, thead tr th {
         background-color: #0d5836;
         color: #ffffff;
     }
