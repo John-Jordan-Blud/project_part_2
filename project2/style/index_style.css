@@ -7,7 +7,7 @@ description: The CSS Styling for index_html - home page
 */
 
 #heading_background {
-    background-image: url('../images/Diamond.jpg');
+    background-image: url('images/Diamond.jpg');
     /*I got mask gradient effect with Google AI while trying outsome methods to make the images fit better*/
     /*The google search was image fade to transparent css which came up with both a Stack Overflow page and the AI answer/
     /*After using it, I found it a suitable styling to make the website popout better and look more professional*/
