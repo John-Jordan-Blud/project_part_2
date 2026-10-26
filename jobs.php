@@ -60,6 +60,11 @@ try {
             border-radius: 8px; 
             background: #fff;
         }
+        pre{
+            font-family: inherit; 
+            white-space: pre-wrap; 
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -111,13 +116,13 @@ try {
                             <p style="margin-top: 10px;"><?php echo htmlspecialchars($job['job_description']); ?></p>
                             
                             <h4>Key Responsibilities</h4>
-                            <pre style="font-family: inherit; white-space: pre-wrap; margin: 0;"><?php echo htmlspecialchars($job['job_responsibilities']); ?></pre>
+                            <pre><?php echo htmlspecialchars($job['job_responsibilities']); ?></pre>
                             
                             <h4>Essential Requirements</h4>
-                            <pre style="font-family: inherit; white-space: pre-wrap; margin: 0;"><?php echo htmlspecialchars($job['job_essential_reqs']); ?></pre>
+                            <pre><?php echo htmlspecialchars($job['job_essential_reqs']); ?></pre>
                             
                             <h4>Preferable Requirements</h4>
-                            <pre style="font-family: inherit; white-space: pre-wrap; margin: 0;"><?php echo htmlspecialchars($job['job_preferable_reqs']); ?></pre>
+                            <pre><?php echo htmlspecialchars($job['job_preferable_reqs']); ?></pre>
                             
                             <div style="margin-top: 20px;">
                                 <a href="apply.php?job_ref=<?php echo urlencode($job['job_reference_number']); ?>" style="display: inline-block; padding: 10px 16px; background-color: #0d5836; color: #fff; text-decoration: none; border-radius: 4px; font-weight: bold;">Apply Here (Ref: <?php echo htmlspecialchars($job['job_reference_number']); ?>)</a>
