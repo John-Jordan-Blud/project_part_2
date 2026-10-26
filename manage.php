@@ -61,7 +61,7 @@ try {
             include('nav.inc')
         ?>
 
-        <h2>Welcome <?php echo $_SESSION['Username'] ?>,</h2>
+        <h1 style = "margin-left: 1em;">Welcome <?php echo $_SESSION['Username'] ?>,</h2>
     </header>
 
     <main>
