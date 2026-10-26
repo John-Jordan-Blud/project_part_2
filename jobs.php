@@ -40,6 +40,26 @@ try {
             font-size: 1.1em;
             color: #22592D;
         }
+        h4{
+            color: #0d5836; margin-top: 15px;
+
+        }
+        details{
+            max-width: 800px; 
+            margin: 0 auto 20px auto; 
+            border: 1px solid #84bd87; 
+            padding: 20px; 
+            border-radius: 8px; 
+        }
+        
+        details.job-item {
+            max-width: 800px; 
+            margin: 0 auto 20px auto; 
+            border: 1px solid #84bd87; 
+            padding: 20px; 
+            border-radius: 8px; 
+            background: #fff;
+        }
     </style>
 </head>
 <body>
@@ -50,7 +70,7 @@ try {
     </header>
     <main>
         <h1>Job Opportunities</h1>
-        <div id="opportunities">
+        <div id="opportunities" style="max-width: 800px; margin: 0 auto; padding: 0 15px; display: flex; flex-direction: column;">
             <aside style="  font-style:italic; 
                             background-color:#c8eaca;
                             border: solid 1px #93bc95; 
@@ -61,7 +81,7 @@ try {
                 <p>We're always looking for passionate and talented individuals to join our growing organisation.</p>
                 <p>We are committed in our promise in creating an inclusive and diverse workplace so we can provide the best support to the communities we serve, including Aboriginal and Torres Strait Islander communities. We encourage and welcome applications from people of all backgrounds, cultures, abilities, genders and identities. </p>
             </aside>
-        <div class="search-container" style="margin-bottom: 25px;">
+        <div class="search-container" style="margin-bottom: 25px; width:100%;">
             <form method="GET" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
             <input type="text" name="search" placeholder="Search by title, location, ref..." value="<?php echo htmlspecialchars($search); ?>" style="padding: 8px; width: 300px; max-width: 100%;">
             <button type="submit" style="padding: 8px 15px;">Search</button>
@@ -72,31 +92,31 @@ try {
         <?php if (!empty($error)): ?>
             <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
         <?php endif; ?>
-
+        <div>
         <!-- Dynamic Job Listings Container -->
         <div id="job-list">
             <?php if (count($jobs) > 0): ?>
                 <?php foreach ($jobs as $job): ?>
-                    <details class="job-item" style="margin-bottom: 20px; border: 1px solid #84bd87; padding: 20px; border-radius: 8px; background: #fff;">
+                    <details>
                         <summary style="font-weight: bold; cursor: pointer; color: #0d5836; font-size: 1.2em;">
                             <?php echo htmlspecialchars($job['job_title']); ?> 
                             <span style="font-size: 0.8em; color: #7a4096; font-weight: normal;">(Ref: <?php echo htmlspecialchars($job['job_reference_number']); ?>)</span>
                         </summary>
                         
-                        <div style="margin-top: 15px; line-height: 1.6;">
+                        <div class="job-item" style="margin-top: 15px; line-height: 1.6;">
                             <p><strong>Location:</strong> <?php echo htmlspecialchars($job['job_location']); ?></p>
                             <p><strong>Salary:</strong> <?php echo htmlspecialchars($job['job_salary']); ?></p>
                             <p><strong>Reporting Line:</strong> <?php echo htmlspecialchars($job['job_reporting_line']); ?></p>
                             
                             <p style="margin-top: 10px;"><?php echo htmlspecialchars($job['job_description']); ?></p>
                             
-                            <h4 style="color: #0d5836; margin-top: 15px;">Key Responsibilities</h4>
+                            <h4>Key Responsibilities</h4>
                             <pre style="font-family: inherit; white-space: pre-wrap; margin: 0;"><?php echo htmlspecialchars($job['job_responsibilities']); ?></pre>
                             
-                            <h4 style="color: #0d5836; margin-top: 15px;">Essential Requirements</h4>
+                            <h4>Essential Requirements</h4>
                             <pre style="font-family: inherit; white-space: pre-wrap; margin: 0;"><?php echo htmlspecialchars($job['job_essential_reqs']); ?></pre>
                             
-                            <h4 style="color: #0d5836; margin-top: 15px;">Preferable Requirements</h4>
+                            <h4>Preferable Requirements</h4>
                             <pre style="font-family: inherit; white-space: pre-wrap; margin: 0;"><?php echo htmlspecialchars($job['job_preferable_reqs']); ?></pre>
                             
                             <div style="margin-top: 20px;">
